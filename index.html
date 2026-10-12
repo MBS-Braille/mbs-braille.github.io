@@ -8,19 +8,28 @@
 <style>
 :root{
   --ink:#14202b;--navy:#0c2d4d;--blue:#14558a;--soft:#edf5fa;
-  --paper:#fff;--line:#66737e;--focus:#ffbf00;--max:1180px
+  --paper:#fff;--surface:#fff;--line:#66737e;--focus:#ffbf00;--max:1180px;
+  --link:#07539b;--footer:#0c2d4d;--muted:#394957
+}
+html[data-theme="dark"]{
+  --ink:#f2f6f8;--navy:#ffffff;--blue:#8cc8ff;--soft:#172532;
+  --paper:#0f171f;--surface:#16212b;--line:#9eabb5;--focus:#ffd54a;
+  --link:#9bd0ff;--footer:#081018;--muted:#c7d1d9
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:1.125rem;line-height:1.65}
+html[data-text-size="small"] body{font-size:1rem}
+html[data-text-size="large"] body{font-size:1.3rem}
+html[data-text-size="xlarge"] body{font-size:1.5rem}
 img{max-width:100%;height:auto}
-a{color:#07539b;text-underline-offset:.18em}
+a{color:var(--link);text-underline-offset:.18em}
 a:hover{text-decoration-thickness:3px}
 a:focus-visible,button:focus-visible{outline:4px solid var(--focus);outline-offset:4px}
 .skip{position:absolute;left:1rem;top:-6rem;z-index:99;background:#000;color:#fff;padding:.8rem 1rem;font-weight:700}
 .skip:focus{top:1rem}
 .wrap{width:min(var(--max),calc(100% - 2rem));margin:auto}
-header{border-bottom:2px solid #aab4bd;background:#fff}
+header{border-bottom:2px solid #aab4bd;background:var(--surface)}
 .top{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;padding:1rem 0}
 .brand{font-size:1.35rem;font-weight:800;color:var(--navy);text-decoration:none}
 nav ul{display:flex;gap:.45rem 1.2rem;flex-wrap:wrap;list-style:none;padding:0;margin:0}
@@ -36,18 +45,19 @@ h3{font-size:1.3rem}
 .lead{font-size:1.35rem}
 .actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.7rem}
 .button{display:inline-block;padding:.8rem 1.15rem;border:2px solid var(--navy);border-radius:.35rem;font-weight:800;text-decoration:none}
-.primary{background:var(--navy);color:#fff}.secondary{background:#fff;color:var(--navy)}
+.primary{background:var(--navy);color:#fff}.secondary{background:var(--surface);color:var(--navy)}
+[data-theme="dark"] .primary{background:#ffffff;color:#0f171f;border-color:#ffffff}
 .hero figure{margin:0}
-.hero img{display:block;border:3px solid var(--navy);border-radius:.6rem;background:#fff}
-figcaption{font-size:.9rem;color:#394957;margin-top:.5rem}
+.hero img{display:block;border:3px solid var(--navy);border-radius:.6rem;background:var(--surface)}
+figcaption{font-size:.9rem;color:var(--muted);margin-top:.5rem}
 section{padding:4rem 0}
-section+section{border-top:1px solid #d6dde3}
+section+section{border-top:1px solid var(--line)}
 .narrow{max-width:850px}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
 .card{border:2px solid var(--line);border-radius:.45rem;padding:1.3rem}
 .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-top:2rem}
 .flow div{border:2px solid var(--blue);padding:1rem;text-align:center;font-weight:700}
-.feature{background:#f7f9fb}
+.feature{background:color-mix(in srgb,var(--paper) 94%,var(--blue) 6%)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:center}
 .braille{display:grid;grid-template-columns:repeat(2,3.2rem);gap:.8rem;justify-content:center;border:3px solid var(--navy);padding:1.5rem;border-radius:1rem;width:max-content;margin:auto}
 .dot{width:3.2rem;height:3.2rem;border-radius:50%;background:var(--navy)}
@@ -55,11 +65,48 @@ section+section{border-top:1px solid #d6dde3}
 .timeline article{margin:0 0 1.8rem}
 .timeline h3{margin-bottom:.25rem}
 .notice{border-left:6px solid var(--blue);background:var(--soft);padding:1rem 1.2rem}
-footer{background:var(--navy);color:#fff;padding:2.5rem 0}
+footer{background:var(--footer);color:#fff;padding:2.5rem 0}
 footer p{margin:.3rem 0}
 @media(max-width:820px){.hero-grid,.cards,.flow,.two{grid-template-columns:1fr}.hero{padding:3rem 0}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 @media(forced-colors:active){.button,.card,.flow div,.braille,.hero img{border:2px solid CanvasText}}
+
+.access-tools{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;padding:.75rem 0;border-top:1px solid var(--line)}
+.access-tools strong{font-size:.95em}
+.access-tools button{font:inherit;font-weight:700;min-width:2.7rem;min-height:2.7rem;padding:.45rem .7rem;border:2px solid var(--navy);border-radius:.35rem;background:var(--surface);color:var(--ink);cursor:pointer}
+.access-tools button:hover{outline:2px solid var(--blue);outline-offset:1px}
+.access-tools button[aria-pressed="true"]{background:var(--navy);color:var(--paper)}
+.access-tools.compact{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap}
+.access-label{font-weight:800;font-size:.95em}
+.access-group{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface)}
+.access-group button{border:0;border-right:1px solid var(--line);border-radius:0;min-width:3rem}
+.access-group button:last-child{border-right:0}
+.access-tools .round-control{border-radius:999px;width:3rem;min-width:3rem;padding:.45rem}
+[data-contrast="high"]{
+  --paper:#ffffff;--surface:#ffffff;--ink:#000000;--navy:#000000;
+  --blue:#0000ee;--soft:#ffffff;--line:#000000;--focus:#ffbf00;
+  --link:#0000ee;--footer:#000000;--muted:#000000
+}
+[data-theme="dark"][data-contrast="high"]{
+  --paper:#000000;--surface:#000000;--ink:#ffffff;--navy:#ffffff;
+  --blue:#ffff00;--soft:#000000;--line:#ffffff;--focus:#00ffff;
+  --link:#ffff00;--footer:#000000;--muted:#ffffff
+}
+[data-theme="dark"] .primary{background:#ffffff;color:#0f171f;border-color:#ffffff}
+[data-theme="dark"][data-contrast="high"] .primary{background:#ffffff;color:#000000;border-color:#ffffff}
+.access-status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:820px){.access-tools{align-items:stretch}.access-tools strong{width:100%}}
+
+/* Encabezado institucional: cambio localizado, controles de accesibilidad intactos */
+.top{flex-direction:column;align-items:stretch}
+.institutional-brand{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;column-gap:2rem;width:100%;max-width:none;font-size:inherit}
+.institutional-brand img{display:block;width:clamp(145px,20vw,245px);max-width:100%;height:auto;min-width:0;justify-self:start}
+.brand-separator{height:5rem;border-left:2px solid var(--line);justify-self:center}
+.brand-mbs{display:flex;flex-direction:column;align-items:flex-end;min-width:0;line-height:1.15;justify-self:end;text-align:right}
+.brand-acronym{font-size:clamp(1.9rem,3.4vw,3rem);font-weight:800;letter-spacing:.07em}
+.brand-subtitle{font-size:clamp(.68rem,1.3vw,.9rem);font-weight:600;letter-spacing:0}
+[data-theme="dark"] .institutional-brand img{background:#fff;border-radius:.25rem;padding:.15rem}
+@media(max-width:600px){.institutional-brand{column-gap:.7rem}.institutional-brand img{width:100%;max-width:165px}.brand-separator{height:3rem}.brand-acronym{font-size:clamp(1.35rem,5vw,1.8rem)}.brand-subtitle{font-size:clamp(.55rem,2.1vw,.72rem)}}
 </style>
 </head>
 <body>
@@ -67,7 +114,7 @@ footer p{margin:.3rem 0}
 
 <header>
 <div class="wrap top">
-<a class="brand" href="#inicio" aria-label="MBS, ir al inicio">MBS · Multilingüe Braille System</a>
+<a class="brand institutional-brand" href="#inicio" aria-label="MBS, ir al inicio"><img src="assets/udemm-completo-escala-de-grises.png" alt="Universidad de la Marina Mercante, UdeMM" width="1510" height="687"><span class="brand-separator" aria-hidden="true"></span><span class="brand-mbs"><span class="brand-acronym">MBS</span><span class="brand-subtitle">Multilingüe Braille System</span></span></a>
 <nav aria-label="Navegación principal">
 <ul>
 <li><a href="#que-es">Qué es MBS</a></li>
@@ -78,6 +125,18 @@ footer p{margin:.3rem 0}
 <li><a href="#accesibilidad">Accesibilidad</a></li>
 </ul>
 </nav>
+</div>
+<div class="wrap access-tools compact" aria-label="Preferencias de accesibilidad">
+<span class="access-label">Accesibilidad:</span>
+<div class="access-group" role="group" aria-label="Tamaño del texto">
+<button type="button" id="textDecrease" aria-label="Reducir tamaño del texto" title="Reducir texto">A−</button>
+<button type="button" id="textReset" aria-label="Restablecer tamaño del texto" title="Tamaño normal">A</button>
+<button type="button" id="textIncrease" aria-label="Aumentar tamaño del texto" title="Aumentar texto">A+</button>
+</div>
+<button class="round-control" type="button" id="contrastToggle" aria-pressed="false" aria-label="Activar alto contraste" title="Alto contraste">◐</button>
+<button class="round-control" type="button" id="themeToggle" aria-pressed="false" aria-label="Activar tema oscuro" title="Tema oscuro">☾</button>
+<button class="round-control" type="button" id="prefsReset" aria-label="Restablecer preferencias de accesibilidad" title="Restablecer">↺</button>
+<span id="accessStatus" class="access-status" role="status" aria-live="polite"></span>
 </div>
 </header>
 
@@ -105,7 +164,7 @@ footer p{margin:.3rem 0}
 <div class="wrap narrow">
 <h2>¿Qué es MBS?</h2>
 <p>MBS integra un teclado basado en los seis puntos de la celda Braille, un microcontrolador ESP32-S3 y una WebApp educativa. El estudiante ingresa combinaciones Braille y recibe realimentación inmediata mediante texto, recursos visuales y síntesis de voz.</p>
-<p>El objetivo no es solamente escribir caracteres. El sistema está concebido como una herramienta para acompañar progresivamente el <strong>aprendizaje, la práctica y la evaluación</strong> del Braille.</p>
+<p>El objetivo no es solamente escribir caracteres. El sistema está concebido como una herramienta para acompañar progresivamente el aprendizaje, la práctica y la evaluación del Braille.</p>
 </div>
 </section>
 
@@ -116,7 +175,7 @@ footer p{margin:.3rem 0}
 <div class="flow" aria-label="Flujo conceptual de MBS">
 <div>1. Estudiante</div><div>2. Teclado Braille</div><div>3. ESP32-S3</div><div>4. WebApp y realimentación</div>
 </div>
-<p>El propio MBS puede crear una red Wi-Fi local. Un teléfono, tablet o computadora se conecta a ella y accede a la WebApp mediante el navegador. Las funciones esenciales no requieren Internet.</p>
+<p>El propio MBS crea una red Wi-Fi local. Un teléfono, tablet o computadora se conecta a ella y accede a la WebApp mediante el navegador. Las funciones esenciales no requieren Internet.</p>
 </div>
 </section>
 
@@ -164,7 +223,8 @@ footer p{margin:.3rem 0}
 <div class="wrap narrow">
 <h2>Probar MBS</h2>
 <p>La demo pública permite experimentar desde un navegador con las actividades educativas de MBS, sin disponer del teclado físico. Incluye cuatro idiomas, lecciones y realimentación visual y hablada.</p>
-<div class="notice"><strong>Demo disponible.</strong> Esta versión utiliza un teclado virtual y es una demostración de las funciones educativas; no requiere el dispositivo físico. <a href="https://sanlorenzo1962.github.io/mbs-demo-web-udemm-braille/" target="_blank" rel="noopener noreferrer">Abrir la demo de MBS</a>.</div>
+<div class="notice"><strong>Demo disponible.</strong> Esta demostración permite utilizar el teclado de la computadora para simular la escritura Braille, sin necesidad de disponer del equipo físico MBS. <a href="https://sanlorenzo1962.github.io/mbs-demo-web-udemm-braille/" target="_blank" rel="noopener noreferrer">Abrir la demo de MBS</a>.</div>
+<p><a href="guia-demo-mbs.html">Consultar la guía accesible para utilizar la demo MBS</a>.</p>
 </div>
 </section>
 
@@ -192,5 +252,99 @@ footer p{margin:.3rem 0}
 <p>© 2026 MBS · Sitio en construcción.</p>
 </div>
 </footer>
+
+<script>
+(function(){
+  const root = document.documentElement;
+  const sizes = ['small','normal','large','xlarge'];
+  const KEY_SIZE = 'mbs-text-size';
+  const KEY_THEME = 'mbs-theme';
+  const KEY_CONTRAST = 'mbs-contrast';
+  const status = document.getElementById('accessStatus');
+  const dec = document.getElementById('textDecrease');
+  const reset = document.getElementById('textReset');
+  const inc = document.getElementById('textIncrease');
+  const contrast = document.getElementById('contrastToggle');
+  const theme = document.getElementById('themeToggle');
+  const prefsReset = document.getElementById('prefsReset');
+
+  function announce(message){
+    status.textContent = '';
+    window.setTimeout(function(){ status.textContent = message; }, 30);
+  }
+
+  function applySize(value, persist){
+    if(!sizes.includes(value)) value = 'normal';
+    if(value === 'normal') root.removeAttribute('data-text-size');
+    else root.setAttribute('data-text-size', value);
+    if(persist) localStorage.setItem(KEY_SIZE, value);
+    const labels = {small:'reducido',normal:'normal',large:'grande',xlarge:'muy grande'};
+    announce('Tamaño de texto ' + labels[value]);
+  }
+
+  function currentSize(){
+    return root.getAttribute('data-text-size') || 'normal';
+  }
+
+  function stepSize(delta){
+    const i = sizes.indexOf(currentSize());
+    const next = Math.max(0, Math.min(sizes.length - 1, i + delta));
+    applySize(sizes[next], true);
+  }
+
+  function preferredTheme(){
+    const saved = localStorage.getItem(KEY_THEME);
+    if(saved === 'dark' || saved === 'light') return saved;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(value, persist){
+    const dark = value === 'dark';
+    if(dark) root.setAttribute('data-theme','dark');
+    else root.removeAttribute('data-theme');
+    theme.setAttribute('aria-pressed', String(dark));
+    theme.setAttribute('aria-label', dark ? 'Activar tema claro' : 'Activar tema oscuro');
+    theme.setAttribute('title', dark ? 'Tema claro' : 'Tema oscuro');
+    theme.textContent = dark ? '☀' : '☾';
+    if(persist) localStorage.setItem(KEY_THEME, dark ? 'dark' : 'light');
+    announce(dark ? 'Tema oscuro activado' : 'Tema claro activado');
+  }
+
+  function applyContrast(value, persist){
+    const high = value === 'high';
+    if(high) root.setAttribute('data-contrast','high');
+    else root.removeAttribute('data-contrast');
+    contrast.setAttribute('aria-pressed', String(high));
+    contrast.setAttribute('aria-label', high ? 'Desactivar alto contraste' : 'Activar alto contraste');
+    contrast.setAttribute('title', high ? 'Desactivar alto contraste' : 'Alto contraste');
+    if(persist) localStorage.setItem(KEY_CONTRAST, high ? 'high' : 'normal');
+    announce(high ? 'Alto contraste activado' : 'Alto contraste desactivado');
+  }
+
+  dec.addEventListener('click', function(){ stepSize(-1); });
+  reset.addEventListener('click', function(){ applySize('normal', true); });
+  inc.addEventListener('click', function(){ stepSize(1); });
+  contrast.addEventListener('click', function(){
+    applyContrast(root.getAttribute('data-contrast') === 'high' ? 'normal' : 'high', true);
+  });
+  theme.addEventListener('click', function(){
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark', true);
+  });
+  prefsReset.addEventListener('click', function(){
+    localStorage.removeItem(KEY_SIZE);
+    localStorage.removeItem(KEY_THEME);
+    localStorage.removeItem(KEY_CONTRAST);
+    applySize('normal', false);
+    applyContrast('normal', false);
+    applyTheme(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light', false);
+    announce('Preferencias de accesibilidad restablecidas');
+  });
+
+  applySize(localStorage.getItem(KEY_SIZE) || 'normal', false);
+  applyContrast(localStorage.getItem(KEY_CONTRAST) || 'normal', false);
+  applyTheme(preferredTheme(), false);
+})();
+</script>
+
 </body>
 </html>

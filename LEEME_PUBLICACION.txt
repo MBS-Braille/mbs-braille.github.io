@@ -1,0 +1,9 @@
+MBS - paquete institucional para prueba y publicación
+
+Base: versión de accesibilidad validada con Narrador.
+Cambios: encabezado UdeMM + MBS, enlace a guía HTML en sección Demo.
+No se modificaron JavaScript, controles, textos de otras secciones ni la demo pública.
+
+PRUEBA: abrir index.html localmente; verificar contraste, tema, tamaños, navegación y enlace a guia-demo-mbs.html.
+PUBLICACIÓN: respaldar repositorio mbs-braille.github.io; subir el contenido de esta carpeta a la raíz del repositorio (index.html, guia-demo-mbs.html y assets/).
+La demo pública se actualizará por separado, cuando se revise su index.html.
